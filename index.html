@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rithwik | Performance Coach & Unleash45 flagship program</title>
+  <meta name="description" content="Cinematic, performance-driven training and coaching engineered for peak physical output. Experience Unleash45 by Rithwik.">
+  
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- CUSTOM CURSOR -->
+  <div class="custom-cursor-dot" id="cursor-dot"></div>
+  <div class="custom-cursor-glow" id="cursor-glow">
+    <span id="cursor-text">VIEW</span>
+  </div>
+
+  <!-- AMBIENT ELEMENTS -->
+  <div class="ambient-bg">
+    <div class="spotlight" id="ambient-spotlight"></div>
+    <canvas class="hero-particles" id="ambient-particles-canvas"></canvas>
+    <div class="noise-overlay"></div>
+  </div>
+
+  <!-- LOADING SCREEN -->
+  <div class="loading-screen" id="loader">
+    <div class="loading-panel top" id="loader-panel-top"></div>
+    <div class="loading-panel bottom" id="loader-panel-bottom"></div>
+    <div class="loading-content">
+      <svg class="loading-svg-container" viewBox="0 0 400 150">
+        <!-- Connecting Line and ECG Heartbeat -->
+        <path class="loading-ecg-path" id="loader-path" d="M 0 75 L 120 75 L 135 45 L 150 115 L 165 65 L 175 85 L 185 75 L 280 75" />
+        
+        <!-- Barbell Animation elements (hidden initially, morphed from path) -->
+        <g class="loading-barbell" id="loader-barbell">
+          <!-- Shaft -->
+          <line class="loading-barbell-shaft" x1="80" y1="75" x2="320" y2="75" />
+          
+          <!-- Left Plates -->
+          <g id="loader-plates-left" transform="translate(0, 0)">
+            <rect class="loading-plate" x="90" y="45" width="8" height="60" rx="3" />
+            <text class="loading-plate-label" x="92" y="78">25</text>
+            <rect class="loading-plate" x="100" y="48" width="8" height="54" rx="3" />
+            <text class="loading-plate-label" x="102" y="78">20</text>
+            <rect class="loading-plate" x="110" y="52" width="6" height="46" rx="2" />
+            <rect class="loading-plate" x="118" y="60" width="4" height="30" rx="1" />
+            <polygon class="loading-barbell-collar" points="124,70 128,70 128,80 124,80" />
+          </g>
+          
+          <!-- Right Plates -->
+          <g id="loader-plates-right" transform="translate(0, 0)">
+            <rect class="loading-plate" x="302" y="45" width="8" height="60" rx="3" />
+            <text class="loading-plate-label" x="304" y="78">25</text>
+            <rect class="loading-plate" x="292" y="48" width="8" height="54" rx="3" />
+            <text class="loading-plate-label" x="294" y="78">20</text>
+            <rect class="loading-plate" x="284" y="52" width="6" height="46" rx="2" />
+            <rect class="loading-plate" x="278" y="60" width="4" height="30" rx="1" />
+            <polygon class="loading-barbell-collar" points="272,70 276,70 276,80 272,80" />
+          </g>
+        </g>
+        
+        <!-- Unleash Text logo -->
+        <text class="loading-logo-text" id="loader-logo" x="200" y="85" text-anchor="middle">UNLEASH45</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- HEADER NAVIGATION -->
+  <header>
+    <a href="#/" class="logo magnetic">RITHWIK<span>.</span></a>
+    <nav id="header-nav">
+      <a href="#/" class="nav-link active" data-target="home">Home</a>
+      <a href="#about-section" class="nav-link" data-target="home" data-scroll="about-section">About</a>
+      <a href="#methodology-section" class="nav-link" data-target="home" data-scroll="methodology-section">Methodology</a>
+      <a href="#success-section" class="nav-link" data-target="home" data-scroll="success-section">Success Stories</a>
+      <a href="#/unleash45" class="nav-link" data-target="unleash45">Unleash45</a>
+    </nav>
+    <a href="#/unleash45" class="nav-cta magnetic" id="nav-cta-btn">Unleash 45</a>
+  </header>
+
+  <!-- PAGE TRANSITION SCREEN -->
+  <div class="page-transition-overlay" id="transition-overlay">
+    <div class="page-transition-logo" id="transition-logo">UNLEASH45</div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- HOME PAGE (RITHWIK PERSONAL BRAND) -->
+  <!-- ========================================== -->
+  <main id="home-page" class="page-view active">
+    
+    <!-- HERO SECTION -->
+    <section class="hero-sec" id="hero-section">
+      <!-- 3D Cinematic Perspective Wrapper -->
+      <div class="hero-3d-wrapper" id="hero-3d-scene">
+        <!-- BACKGROUND LAYER: Vignette, spotlights, pulse overlay -->
+        <div class="hero-3d-bg" id="hero-camera-bg">
+          <div class="hero-vignette"></div>
+          <div class="heartbeat-pulse-bg" id="heartbeat-overlay"></div>
+          <div class="hero-3d-spotlight" id="hero-spotlight-layer"></div>
+          
+          <!-- Scene 1 Title - positioned behind the subject in 3D space -->
+          <div class="story-scene-bg" id="scene-1">
+            <h1 class="scene-title-huge">MEET RITHWIK</h1>
+          </div>
+        </div>
+        
+        <!-- MIDGROUND LAYER: Rithwik subject with idle breathing wrap -->
+        <div class="hero-3d-subject" id="hero-subject-layer">
+          <div class="hero-coach-breathe-wrap">
+            <img src="assets/images/rithwik-placeholder.png" alt="Rithwik" class="hero-coach-img" id="hero-coach-image">
+          </div>
+        </div>
+
+        <!-- FOREGROUND LAYER: Close-up floating particles -->
+        <div class="hero-3d-fg" id="hero-foreground-layer">
+          <canvas class="hero-particles" id="ambient-particles-canvas"></canvas>
+        </div>
+      </div>
+      
+      <!-- CINEMATIC SCENE TEXT OVERLAYS -->
+      <div class="story-scenes-container" id="story-scenes">
+        
+        <!-- Scene 2: Dolly (Camera moves closer, spotlight follows Rithwik - no text) -->
+        <div class="story-scene" id="scene-2">
+          <!-- No copy overlay for clean camera dolly moment -->
+        </div>
+        
+        <!-- Scene 3: Orbit (Camera rotates to left, dust parallax - no text) -->
+        <div class="story-scene" id="scene-3">
+          <!-- No copy overlay to focus on orbit parallax -->
+        </div>
+        
+        <!-- Scene 4: Waist (Focus on waist, shoes. Humble beginnings story) -->
+        <div class="story-scene" id="scene-4">
+          <div class="scene-text-block top">
+            <h2>Every journey begins with one decision.</h2>
+            <h3>Mine began with discipline.</h3>
+            <p>I started coaching because I saw a gap between effort and alignment. True performance isn't about exhaustively grinding—it's about biomechanical efficiency and smart programming.</p>
+          </div>
+        </div>
+        
+        <!-- Scene 5: Chest (Focus on chest, posture, confidence. Consistency story) -->
+        <div class="story-scene" id="scene-5">
+          <div class="scene-text-block right">
+            <h2>Strength isn't built overnight.</h2>
+            <h3>It's built one session at a time.</h3>
+            <p>Physical adaptations happen in response to chronic, deliberate stress. My protocols focus on continuous progression, building structural density one session at a time.</p>
+          </div>
+        </div>
+        
+        <!-- Scene 6: Shoulder (Focus on shoulders, background gets darker, rim light appears) -->
+        <div class="story-scene" id="scene-6">
+          <div class="scene-text-block left">
+            <h2>These hands have coached hundreds of sessions.</h2>
+            <h3>Every cue. Every correction. Every rep.</h3>
+            <p>Coaching is a tactile sports science. These hands correct angles, pre-tension joint capsules, and align skeletal systems to output massive force without leaks.</p>
+          </div>
+        </div>
+        
+        <!-- Scene 7: Face (Focus on face/eyes close-up. Title panel appears) -->
+        <div class="story-scene" id="scene-7">
+          <div class="scene-text-block right">
+            <h2>Rithwik</h2>
+            <h3>Performance Coach // Founder of Unleash45</h3>
+            <p>Science-Based Programming. High-Performance Strength & Conditioning Protocols designed to unlock peak biological capacity.</p>
+          </div>
+        </div>
+        
+        <!-- Scene 8: Pull Back (Camera moves away, statistics and about section fold in below) -->
+        <div class="story-scene" id="scene-8">
+          <!-- Pulled back scene, transitions to home view -->
+        </div>
+      </div>
+      
+      <!-- SCROLL INDICATOR -->
+      <div class="scroll-indicator" id="hero-scroll-indicator">
+        <span>SCROLL TO DOLLY</span>
+        <div class="scroll-mouse">
+          <div class="scroll-wheel"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about-sec" id="about-section">
+      <div class="container">
+        <div class="about-grid">
+          
+          <!-- Continuous image transition placeholder or secondary visual -->
+          <div class="about-visual reveal-scale">
+            <img src="assets/images/rithwik-placeholder.png" alt="Rithwik Performance Coach Portrait" id="about-coach-image">
+          </div>
+          
+          <div class="about-content">
+            <span class="section-label">THE COACH</span>
+            <h2 class="text-reveal">ENGINEERED FOR <span>OUTPUT</span></h2>
+            <div class="about-bio line-reveal">
+              <p>Rithwik is a world-class performance specialist dedicated to decoding human potential. His methodology synthesizes sport-science, biomechanical precision, and high-performance psychology.</p>
+              <p>Having trained professional athletes, CEOs, and driven individuals, Rithwik's philosophy is rooted in quantitative progress, structural integrity, and sustainable recovery.</p>
+            </div>
+            
+            <div class="about-details text-reveal">
+              <div class="detail-block">
+                <h4>Credentials</h4>
+                <ul>
+                  <li>M.S. Sports Science & Biomechanics</li>
+                  <li>CSCS (Certified Strength & Conditioning)</li>
+                  <li>USA Weightlifting Level 2 Coach</li>
+                </ul>
+              </div>
+              <div class="detail-block">
+                <h4>Specializations</h4>
+                <ul>
+                  <li>Neuromuscular Training</li>
+                  <li>Metabolic Conditioning</li>
+                  <li>Functional Joint Mobility</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- PHILOSOPHY SECTION -->
+    <section class="philosophy-sec" id="philosophy-section" style="background-image: url('assets/images/philosophy-bg.jpg');">
+      <div class="container">
+        <div class="philosophy-container">
+          <span class="section-label">PHILOSOPHY</span>
+          <blockquote class="philosophy-quote text-reveal">
+            "Your body is a high-performance machine. Most people run it on low octane. We program for <span>optimal horsepower</span>."
+          </blockquote>
+          <div class="philosophy-author word-reveal">— Rithwik</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PERFORMANCE STATS SECTION -->
+    <section class="stats-sec" id="stats-section">
+      <div class="container">
+        <div class="stats-grid">
+          
+          <div class="stat-card">
+            <span class="stat-number" data-count="1000">0</span>
+            <span class="stat-label">Sessions Coached</span>
+          </div>
+          
+          <div class="stat-card">
+            <span class="stat-number" data-count="45">0</span>
+            <span class="stat-label">Min Active Workout</span>
+          </div>
+          
+          <div class="stat-card">
+            <span class="stat-number" data-count="8">0</span>
+            <span class="stat-label">Week Periodisation</span>
+          </div>
+          
+          <div class="stat-card">
+            <span class="stat-number" data-count="98">0</span>
+            <span class="stat-label">% Success Rate</span>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- TRAINING METHODOLOGY (HORIZONTAL SCROLL) -->
+    <section class="methodology-sec" id="methodology-section">
+      <div class="container">
+        <span class="section-label">METHODOLOGY</span>
+        <h2 class="text-reveal">THE PERFORMANCE <span>PILLARS</span></h2>
+        <p class="lead-text line-reveal">Every athlete represents a unique structural equation. My 5-pillar system resolves that equation to unlock unchecked athletic expression.</p>
+      </div>
+      
+      <div class="horizontal-scroll-container">
+        <div class="scroll-track-wrapper">
+          <div class="scroll-track" id="methodology-track">
+            
+            <!-- Card 1 -->
+            <div class="methodology-card tilt-card">
+              <div class="card-num">01 // ASSESS</div>
+              <div class="card-content">
+                <h3>Movement Diagnostics</h3>
+                <p>We analyze joint mobility, structural imbalances, and movement deficiencies before touching weights. Data dictates the direction.</p>
+              </div>
+              <div class="card-footer">
+                <span>Explore Diagnostics</span> <i data-lucide="arrow-up-right"></i>
+              </div>
+            </div>
+            
+            <!-- Card 2 -->
+            <div class="methodology-card tilt-card">
+              <div class="card-num">02 // PROGRAM</div>
+              <div class="card-content">
+                <h3>Periodised Load</h3>
+                <p>Periodisation isn't guessing; it's engineering stress. Custom protocols built around progressive overload, mechanical tension, and work capacity.</p>
+              </div>
+              <div class="card-footer">
+                <span>View Protocols</span> <i data-lucide="arrow-up-right"></i>
+              </div>
+            </div>
+            
+            <!-- Card 3 -->
+            <div class="methodology-card tilt-card">
+              <div class="card-num">03 // EXECUTE</div>
+              <div class="card-content">
+                <h3>High-Velocity Power</h3>
+                <p>Developing rapid rate of force development (RFD). Translating absolute strength into explosive speed and functional agility.</p>
+              </div>
+              <div class="card-footer">
+                <span>Watch Execution</span> <i data-lucide="arrow-up-right"></i>
+              </div>
+            </div>
+            
+            <!-- Card 4 -->
+            <div class="methodology-card tilt-card">
+              <div class="card-num">04 // RECOVER</div>
+              <div class="card-content">
+                <h3>Active Restoration</h3>
+                <p>Performance isn't built in the gym; it's built in deep sleep, structural mobility, target nutrition, and localized tissue regeneration.</p>
+              </div>
+              <div class="card-footer">
+                <span>Learn Recovery</span> <i data-lucide="arrow-up-right"></i>
+              </div>
+            </div>
+            
+            <!-- Card 5 -->
+            <div class="methodology-card tilt-card">
+              <div class="card-num">05 // ADAPT</div>
+              <div class="card-content">
+                <h3>Consistently Evolve</h3>
+                <p>Tracking biological indicators weekly. Adapting the strain metrics dynamically to sustain absolute continuous optimization without burnout.</p>
+              </div>
+              <div class="card-footer">
+                <span>Read Adaptations</span> <i data-lucide="arrow-up-right"></i>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUCCESS STORIES -->
+    <section class="success-sec" id="success-section">
+      <div class="container">
+        <span class="section-label">REAL RESULTS</span>
+        <h2 class="text-reveal">ATHLETE <span>JOURNEYS</span></h2>
+        
+        <div class="stories-grid">
+          
+          <!-- Story 1 -->
+          <div class="story-card hover-reveal-img">
+            <div class="story-visual-wrap">
+              <img src="assets/images/success-1.jpg" alt="Athletic transformation story 1" class="story-img">
+              <div class="story-slider-overlay"><span></span> 8 WEEKS PROTOCOL</div>
+            </div>
+            <div class="story-info">
+              <div class="story-meta">Marc H. // CEO & Triathlete</div>
+              <h3 class="story-name">Rebuilt From Center</h3>
+              <p class="story-quote">"After months of chronic lower back pain, Rithwik re-engineered my posterior chain. I added 40kg to my squat and cut 12 minutes off my Olympic distance run."</p>
+            </div>
+          </div>
+          
+          <!-- Story 2 -->
+          <div class="story-card hover-reveal-img">
+            <div class="story-visual-wrap">
+              <img src="assets/images/success-2.jpg" alt="Athletic transformation story 2" class="story-img">
+              <div class="story-slider-overlay"><span></span> 16 WEEKS HYPERTROPHY</div>
+            </div>
+            <div class="story-info">
+              <div class="story-meta">Sarah K. // Elite Sprinter</div>
+              <h3 class="story-name">Unlocking Explosiveness</h3>
+              <p class="story-quote">"We focused entirely on rate of force development and joint stability. Rithwik's science-backed mobility sequences changed the way I move entirely."</p>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- CINEMATIC VIDEO SECTION -->
+    <section class="video-sec" id="video-section">
+      <div class="container">
+        <span class="section-label">THE EXPERIENCE</span>
+        <h2 class="text-reveal">CINEMATIC <span>TRAINING</span></h2>
+        
+        <div class="video-wrapper hover-reveal-view" id="play-video-trigger" data-video-id="L966qO_L9Gg">
+          <img src="assets/images/philosophy-bg.jpg" alt="Cinematic trailer preview" class="video-preview-img">
+          <div class="video-overlay">
+            <div class="video-play-btn">
+              <i data-lucide="play"></i>
+            </div>
+          </div>
+          <div class="video-text text-reveal">
+            <h4>Watch the Philosophy In Action</h4>
+            <p>A cinematic look into Rithwik's extreme performance testing protocols.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO LIGHTBOX MODAL -->
+    <div class="video-lightbox" id="video-lightbox">
+      <div class="lightbox-content">
+        <button class="lightbox-close" id="lightbox-close-btn">
+          <i data-lucide="x"></i> Close
+        </button>
+        <div id="video-iframe-container"></div>
+      </div>
+    </div>
+
+    <!-- CTA SECTION -->
+    <section class="cta-sec">
+      <div class="cta-wrap">
+        <span class="cta-tag word-reveal">ARE YOU READY?</span>
+        <h2 class="cta-title line-reveal">READY TO TRANSITION INTO <span>PEAK PERFORMANCE?</span></h2>
+        <div class="btn-wrap text-reveal">
+          <a href="#/unleash45" class="btn-primary magnetic">
+            ENTER UNLEASH45
+            <span class="btn-arrow"><i data-lucide="arrow-right"></i></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================== -->
+  <!-- UNLEASH45 PAGE (IMMERSIVE LIFT EXPERIENCE) -->
+  <!-- ========================================== -->
+  <main id="unleash45-page" class="page-view">
+    
+    <!-- IMMERSIVE FIXED VISUAL BACKGROUND -->
+    <div class="unleash-visual-bg">
+      <div class="unleash-overlay"></div>
+      
+      <!-- Biomechanical SVG Deadlifter -->
+      <svg class="biomechanical-svg" id="biomechanic-deadlifter" viewBox="0 0 600 600">
+        <!-- Technical Gridlines in background -->
+        <line class="bio-grid-line" x1="50" y1="0" x2="50" y2="600" />
+        <line class="bio-grid-line" x1="150" y1="0" x2="150" y2="600" />
+        <line class="bio-grid-line" x1="250" y1="0" x2="250" y2="600" />
+        <line class="bio-grid-line" x1="350" y1="0" x2="350" y2="600" />
+        <line class="bio-grid-line" x1="450" y1="0" x2="450" y2="600" />
+        <line class="bio-grid-line" x1="550" y1="0" x2="550" y2="600" />
+        
+        <line class="bio-grid-line" x1="0" y1="100" x2="600" y2="100" />
+        <line class="bio-grid-line" x1="0" y1="200" x2="600" y2="200" />
+        <line class="bio-grid-line" x1="0" y1="300" x2="600" y2="300" />
+        <line class="bio-grid-line" x1="0" y1="400" x2="600" y2="400" />
+        <line class="bio-grid-line" x1="0" y1="500" x2="600" y2="500" />
+        
+        <!-- Floor / Platform -->
+        <line x1="100" y1="500" x2="500" y2="500" stroke="rgba(255,255,255,0.08)" stroke-width="2" />
+        
+        <!-- MUSCLE GROUPS (Underlay lines that glow green) -->
+        <!-- Hamstrings (Ankle to Hip or Knee to Hip) -->
+        <line class="bio-muscle" id="muscle-hamstrings" x1="260" y1="500" x2="280" y2="430" />
+        <!-- Glutes (Knee to Hip / Hip joint focus) -->
+        <path class="bio-muscle" id="muscle-glutes" d="M 280 430 Q 250 410 240 370" fill="none" />
+        <!-- Lower Back / Erector Spinae (Hip to Shoulder) -->
+        <line class="bio-muscle" id="muscle-back" x1="240" y1="370" x2="190" y2="250" />
+        <!-- Traps / Shoulders (Shoulder to Neck) -->
+        <line class="bio-muscle" id="muscle-traps" x1="190" y1="250" x2="185" y2="215" />
+        <!-- Quads (Hip to Knee) -->
+        <line class="bio-muscle" id="muscle-quads" x1="240" y1="370" x2="280" y2="430" />
+
+        <!-- SKELETAL STRUCTURE (BONES) -->
+        <!-- Shin (Ankle -> Knee) -->
+        <line class="bio-bone" id="bone-shin" x1="260" y1="500" x2="280" y2="430" />
+        <!-- Thigh (Knee -> Hip) -->
+        <line class="bio-bone" id="bone-thigh" x1="280" y1="430" x2="240" y2="370" />
+        <!-- Spine/Torso (Hip -> Shoulder) -->
+        <line class="bio-bone" id="bone-spine" x1="240" y1="370" x2="190" y2="250" />
+        <!-- Neck/Head connection -->
+        <line class="bio-bone" id="bone-neck" x1="190" y1="250" x2="185" y2="215" />
+        <!-- Upper Arm (Shoulder -> Elbow) -->
+        <line class="bio-bone" id="bone-uarm" x1="190" y1="250" x2="200" y2="320" />
+        <!-- Forearm (Elbow -> Hand) -->
+        <line class="bio-bone" id="bone-farm" x1="200" y1="320" x2="220" y2="390" />
+
+        <!-- SKELETAL STRUCTURE (JOINTS) -->
+        <!-- Ankle -->
+        <circle class="bio-joint" id="joint-ankle" cx="260" cy="500" r="6" />
+        <!-- Knee -->
+        <circle class="bio-joint" id="joint-knee" cx="280" cy="430" r="6" />
+        <!-- Hip -->
+        <circle class="bio-joint" id="joint-hip" cx="240" cy="370" r="7" />
+        <!-- Shoulder -->
+        <circle class="bio-joint" id="joint-shoulder" cx="190" cy="250" r="6" />
+        <!-- Elbow -->
+        <circle class="bio-joint" id="joint-elbow" cx="200" cy="320" r="5" />
+        <!-- Hand -->
+        <circle class="bio-joint" id="joint-hand" cx="220" cy="390" r="5" />
+        <!-- Head -->
+        <circle class="bio-joint" id="joint-head" cx="180" cy="195" r="14" />
+
+        <!-- BARBELL STRUCTURE -->
+        <!-- Bar shaft -->
+        <line class="bio-barbell" id="barbell-shaft" x1="100" y1="390" x2="340" y2="390" />
+        <!-- Left Weight stack -->
+        <g id="barbell-plates-l">
+          <rect class="bio-weight" x="70" y="360" width="10" height="60" rx="3" />
+          <rect class="bio-weight" x="80" y="355" width="12" height="70" rx="3" />
+          <rect class="bio-weight" x="92" y="355" width="8" height="70" rx="3" />
+        </g>
+        <!-- Right Weight stack -->
+        <g id="barbell-plates-r">
+          <rect class="bio-weight" x="340" y="355" width="8" height="70" rx="3" />
+          <rect class="bio-weight" x="348" y="355" width="12" height="70" rx="3" />
+          <rect class="bio-weight" x="360" y="360" width="10" height="60" rx="3" />
+        </g>
+
+        <!-- BIOMECHANICAL TEXT & INDICATORS -->
+        <text class="bio-angle-text" id="angle-knee-text" x="305" y="435">KNEE: 110°</text>
+        <text class="bio-angle-text" id="angle-hip-text" x="250" y="350">HIP: 65°</text>
+        <text class="bio-label-text" id="muscle-load-text" x="180" y="160">POSTERIOR CHAIN OPTIMIZED</text>
+      </svg>
+    </div>
+
+    <!-- UNLEASH HERO -->
+    <section class="unleash-hero">
+      <div class="unleash-hero-content">
+        <span class="section-label word-reveal">THE FLAGSHIP PROTOCOL</span>
+        <h1 class="unleash-huge-title word-reveal">UNLEASH<span>45</span></h1>
+        <p class="unleash-tagline line-reveal">45 Minutes. Zero Waste. Engineered Periodisation. Designed for peak human physical capability.</p>
+        <div class="scroll-indicator" id="unleash-scroll-indicator">
+          <span>SCROLL TO LIFT</span>
+          <div class="scroll-mouse">
+            <div class="scroll-wheel"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UNLEASH MAIN CONTENT OVERVIEW -->
+    <section class="unleash-overview-sec">
+      <div class="container">
+        <span class="section-label">THE BLUEPRINT</span>
+        <h2 class="text-reveal">45 MINUTE <span>EFFICIENCY</span></h2>
+        <p class="lead-text line-reveal">Time is the ultimate luxury. Unleash45 maximizes neurological drive and muscular output in a strict, high-density timeframe. No fluff. Just athletic science.</p>
+        
+        <div class="unleash-grid">
+          
+          <!-- Card 1 -->
+          <div class="unleash-card text-reveal">
+            <div class="unleash-card-icon"><i data-lucide="zap"></i></div>
+            <h3>High Density Strain</h3>
+            <p>Every second of the 45 minutes is accounted for. We manipulate rest intervals and tempo protocols to force neuromuscular adaptation in minimum time.</p>
+          </div>
+          
+          <!-- Card 2 -->
+          <div class="unleash-card text-reveal">
+            <div class="unleash-card-icon"><i data-lucide="activity"></i></div>
+            <h3>Biomechanical Precision</h3>
+            <p>A lift is only as good as its physics. Our structure targets core stability, glute recruitment, thoracic mobility, and optimal joint alignment.</p>
+          </div>
+          
+          <!-- Card 3 -->
+          <div class="unleash-card text-reveal">
+            <div class="unleash-card-icon"><i data-lucide="shield-check"></i></div>
+            <h3>Resilient Systems</h3>
+            <p>We train joints to absorb shock and redirect load. Unleash45 builds bulletproof shoulders, hips, and knees, reducing injury risk to zero.</p>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- 8-WEEK TIMELINE -->
+    <section class="timeline-sec" id="timeline-section">
+      <div class="container">
+        <span class="section-label">PERIODISATION</span>
+        <h2 class="text-reveal">8-WEEK <span>MACROCYCLE</span></h2>
+        <p class="lead-text line-reveal">A macrocycle is built step-by-step. Hover over each week to expand the exact biomechanical milestones, targets, and metabolic focuses.</p>
+        
+        <div class="timeline-wrapper">
+          <!-- Central Connecting Line -->
+          <div class="timeline-line"></div>
+          <div class="timeline-line-active" id="timeline-indicator"></div>
+          
+          <!-- Week 1-2 -->
+          <div class="timeline-item">
+            <div class="timeline-bullet"><div class="timeline-bullet-inner"></div></div>
+            <div class="timeline-content expanded">
+              <div class="timeline-week">Weeks 01 - 02</div>
+              <h3>Neuromuscular Baseline</h3>
+              <div class="timeline-details">
+                <div class="timeline-details-left">
+                  <p>Establishing movement patterns, identifying unilateral deficiencies, and initiating structural connective tissue adaptations.</p>
+                  <ul>
+                    <li>Deep hip mobility sequences</li>
+                    <li>Core-bracing dynamics under static load</li>
+                    <li>Eccentric muscle loading to stimulate tendon resilience</li>
+                  </ul>
+                </div>
+                <div class="timeline-details-right">
+                  <div>
+                    <div class="timeline-stat-label">Focus</div>
+                    <div class="timeline-stat-val">Structural Integrity</div>
+                  </div>
+                  <div>
+                    <div class="timeline-stat-label">Intensity Target</div>
+                    <div class="timeline-stat-val">60-65% 1RM</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Week 3-4 -->
+          <div class="timeline-item">
+            <div class="timeline-bullet"><div class="timeline-bullet-inner"></div></div>
+            <div class="timeline-content">
+              <div class="timeline-week">Weeks 03 - 04</div>
+              <h3>Hypertrophic Density</h3>
+              <div class="timeline-details">
+                <div class="timeline-details-left">
+                  <p>Increasing total training volume while maintaining structural integrity. Stimulating local myofibrillar protein synthesis and motor unit recruitment.</p>
+                  <ul>
+                    <li>Superset protocols targeting mechanical tension</li>
+                    <li>Velocity loss monitoring per set</li>
+                    <li>Active joint decompression during recovery sets</li>
+                  </ul>
+                </div>
+                <div class="timeline-details-right">
+                  <div>
+                    <div class="timeline-stat-label">Focus</div>
+                    <div class="timeline-stat-val">Myofibrillar Density</div>
+                  </div>
+                  <div>
+                    <div class="timeline-stat-label">Intensity Target</div>
+                    <div class="timeline-stat-val">70-75% 1RM</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Week 5-6 -->
+          <div class="timeline-item">
+            <div class="timeline-bullet"><div class="timeline-bullet-inner"></div></div>
+            <div class="timeline-content">
+              <div class="timeline-week">Weeks 05 - 06</div>
+              <h3>Absolute Strength Thresholds</h3>
+              <div class="timeline-details">
+                <div class="timeline-details-left">
+                  <p>Transitioning into maximal motor unit recruitment. High intensity, high rest, absolute force production focused on multi-joint patterns.</p>
+                  <ul>
+                    <li>CNS adaptation through heavy compound lifts</li>
+                    <li>Intra-set neural activation drills</li>
+                    <li>Autoregulatory load scaling based on daily performance</li>
+                  </ul>
+                </div>
+                <div class="timeline-details-right">
+                  <div>
+                    <div class="timeline-stat-label">Focus</div>
+                    <div class="timeline-stat-val">Maximal CNS Output</div>
+                  </div>
+                  <div>
+                    <div class="timeline-stat-label">Intensity Target</div>
+                    <div class="timeline-stat-val">80-90% 1RM</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Week 7-8 -->
+          <div class="timeline-item">
+            <div class="timeline-bullet"><div class="timeline-bullet-inner"></div></div>
+            <div class="timeline-content">
+              <div class="timeline-week">Weeks 07 - 08</div>
+              <h3>Velocity & Peak Expression</h3>
+              <div class="timeline-details">
+                <div class="timeline-details-left">
+                  <p>Tapering load, focusing on high-velocity explosive outputs, rate of force development (RFD), and athletic expression.</p>
+                  <ul>
+                    <li>Dynamic effort compound movements</li>
+                    <li>Plyometric amortization acceleration</li>
+                    <li>Performance testing & post-cycle evaluation</li>
+                  </ul>
+                </div>
+                <div class="timeline-details-right">
+                  <div>
+                    <div class="timeline-stat-label">Focus</div>
+                    <div class="timeline-stat-val">Rate of Force (RFD)</div>
+                  </div>
+                  <div>
+                    <div class="timeline-stat-label">Intensity Target</div>
+                    <div class="timeline-stat-val">Dynamic (High Speed)</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMUNITY SECTION -->
+    <section class="community-sec">
+      <div class="container">
+        <span class="section-label">UNLEASH COMMUNITY</span>
+        <h2 class="text-reveal">THE 45 <span>COLLECTIVE</span></h2>
+        <p class="lead-text line-reveal">Elite performance demands accountability. Meet some of the busy professionals, founders, and athletes maintaining their peak under Rithwik's protocols.</p>
+        
+        <div class="floating-cards-wrap" id="community-float-wrapper">
+          
+          <!-- Card 1 -->
+          <div class="floating-card card-pos-1 text-reveal" data-speed="-1">
+            <div class="floating-card-user">
+              <div class="floating-card-avatar">DL</div>
+              <div class="floating-card-username">
+                <h4>David L.</h4>
+                <span>Venture Partner</span>
+              </div>
+            </div>
+            <p class="floating-card-text">"Unleash45 saved my physical sanity. 45 minutes on my calendar, four times a week, and I'm stronger at 38 than I was in college."</p>
+          </div>
+          
+          <!-- Card 2 -->
+          <div class="floating-card card-pos-2 text-reveal" data-speed="1.5">
+            <div class="floating-card-user">
+              <div class="floating-card-avatar">MK</div>
+              <div class="floating-card-username">
+                <h4>Melanie K.</h4>
+                <span>Product Designer</span>
+              </div>
+            </div>
+            <p class="floating-card-text">"The biomechanical details on every lift are incredible. It feels less like an sweat session and more like bio-engineering."</p>
+          </div>
+          
+          <!-- Card 3 -->
+          <div class="floating-card card-pos-3 text-reveal" data-speed="-1.8">
+            <div class="floating-card-user">
+              <div class="floating-card-avatar">RP</div>
+              <div class="floating-card-username">
+                <h4>Rohan P.</h4>
+                <span>Tech Founder</span>
+              </div>
+            </div>
+            <p class="floating-card-text">"Autoregulated loads mean I don't break when my sleep is off. Rithwik's app-based feedback loop is flawless."</p>
+          </div>
+          
+          <!-- Card 4 -->
+          <div class="floating-card card-pos-4 text-reveal" data-speed="2.2">
+            <div class="floating-card-user">
+              <div class="floating-card-avatar">AN</div>
+              <div class="floating-card-username">
+                <h4>Arjun N.</h4>
+                <span>National Rower</span>
+              </div>
+            </div>
+            <p class="floating-card-text">"Rithwik's peak velocity phase shaved seconds off my sprint stroke. Maximum power density."</p>
+          </div>
+          
+          <!-- Card 5 -->
+          <div class="floating-card card-pos-5 text-reveal" data-speed="-0.7">
+            <div class="floating-card-user">
+              <div class="floating-card-avatar">TC</div>
+              <div class="floating-card-username">
+                <h4>Tanya C.</h4>
+                <span>Creative Director</span>
+              </div>
+            </div>
+            <p class="floating-card-text">"The community vibe is super premium. Everyone is hyper-focused on output and efficiency. No influencers, just workers."</p>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS TICKER (INFINITE MARQUEE) -->
+    <section class="testimonials-sec">
+      <div class="marquee-container">
+        
+        <div class="marquee-track">
+          
+          <div class="marquee-item">
+            <span class="marquee-text">"RITHWIK IS THE BEST COACH I'VE EVER HAD."</span>
+            <span class="marquee-author">— JAMES C.</span>
+          </div>
+          <div class="marquee-item">
+            <span class="marquee-text">"UNLEASH45 GAVE ME MY CAPACITY BACK."</span>
+            <span class="marquee-author">— SARAH V.</span>
+          </div>
+          <div class="marquee-item">
+            <span class="marquee-text">"HIGHEST STANDARD OF BIOMECHANICS."</span>
+            <span class="marquee-author">— DR. NIKHIL G.</span>
+          </div>
+          <div class="marquee-item">
+            <span class="marquee-text">"NO WASTED SECONDS. ZERO FLUFF."</span>
+            <span class="marquee-author">— MICHAEL B.</span>
+          </div>
+          
+          <!-- Repeat items for seamless infinite marquee scroll -->
+          <div class="marquee-item">
+            <span class="marquee-text">"RITHWIK IS THE BEST COACH I'VE EVER HAD."</span>
+            <span class="marquee-author">— JAMES C.</span>
+          </div>
+          <div class="marquee-item">
+            <span class="marquee-text">"UNLEASH45 GAVE ME MY CAPACITY BACK."</span>
+            <span class="marquee-author">— SARAH V.</span>
+          </div>
+          <div class="marquee-item">
+            <span class="marquee-text">"HIGHEST STANDARD OF BIOMECHANICS."</span>
+            <span class="marquee-author">— DR. NIKHIL G.</span>
+          </div>
+          <div class="marquee-item">
+            <span class="marquee-text">"NO WASTED SECONDS. ZERO FLUFF."</span>
+            <span class="marquee-author">— MICHAEL B.</span>
+          </div>
+          
+        </div>
+        
+      </div>
+    </section>
+
+    <!-- UNLEASH CTA -->
+    <section class="cta-sec" id="unleash-cta">
+      <div class="cta-wrap">
+        <span class="cta-tag word-reveal">LIMITED SLOTS AVAILABLE</span>
+        <h2 class="cta-title line-reveal">READY TO <span>UNLEASH?</span></h2>
+        <div class="btn-wrap text-reveal">
+          <button class="btn-primary magnetic" onclick="alert('Join Request Sent. Rithwik will contact you shortly.')">
+            APPLY TO PROTOCOL
+            <span class="btn-arrow"><i data-lucide="arrow-right"></i></span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================== -->
+  <!-- FOOTER -->
+  <!-- ========================================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        
+        <div class="footer-col footer-quote">
+          "Performance isn't built overnight.<br>It's engineered through <span>consistency.</span>"
+        </div>
+        
+        <div class="footer-col footer-links-wrap">
+          <div>
+            <h5>Navigation</h5>
+            <ul>
+              <li><a href="#/" class="footer-nav-link" data-target="home">Home</a></li>
+              <li><a href="#about-section" class="footer-nav-link" data-scroll="about-section">About Rithwik</a></li>
+              <li><a href="#methodology-section" class="footer-nav-link" data-scroll="methodology-section">Methodology</a></li>
+              <li><a href="#/unleash45" class="footer-nav-link" data-target="unleash45">Unleash45 Program</a></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Socials</h5>
+            <ul>
+              <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+              <li><a href="https://youtube.com" target="_blank">YouTube</a></li>
+              <li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li>
+              <li><a href="https://twitter.com" target="_blank">Twitter / X</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="footer-col footer-newsletter">
+          <h5>STAY OPTIMIZED</h5>
+          <p style="font-size: 13px; color: var(--color-text-muted); margin-bottom: 20px; line-height: 1.5;">Receive weekly scientific briefings on athletic output, recovery protocols, and training efficiency.</p>
+          <div class="footer-input-group">
+            <input type="email" placeholder="YOUR EMAIL ADDRESS" class="footer-input">
+            <button class="footer-submit"><i data-lucide="arrow-right"></i></button>
+          </div>
+        </div>
+        
+      </div>
+      
+      <div class="footer-copyright">
+        <span>© 2026 RITHWIK. ALL RIGHTS ENGINEERED.</span>
+        <span>DESIGN INSPIRED BY LUXURY SPORTS BIOMETRICS.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- GSAP & Lenis CDN Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.5/dist/lenis.min.js"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Custom JS Modules -->
+  <script src="js/main.js"></script>
+  <script src="js/home.js"></script>
+  <script src="js/unleash45.js"></script>
+</body>
+</html>
